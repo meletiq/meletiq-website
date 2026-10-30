@@ -1,0 +1,307 @@
+---
+import '../styles/global.css';
+const title = 'Meletiq — Thoughtful software. Useful by design.';
+const description =
+  'An independent software studio exploring practical browser extensions, mobile applications, offline games, and useful digital tools.';
+const canonical = Astro.site ? new URL('/', Astro.site).href : undefined;
+const products = [
+  {
+    number: '01',
+    label: 'Browser extensions',
+    title: 'Small tools. Better browsing.',
+    detail:
+      'Exploring useful ways to make everyday moments on the web feel simpler.',
+    glyph: '↗',
+  },
+  {
+    number: '02',
+    label: 'Mobile & productivity',
+    title: 'Made for the everyday.',
+    detail:
+      'Practical ideas for the tasks, routines, and little details that fill our days.',
+    glyph: '◈',
+  },
+  {
+    number: '03',
+    label: 'Offline games',
+    title: 'A little room for play.',
+    detail:
+      'Exploring engaging experiences you can enjoy beyond an internet connection.',
+    glyph: '✳',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f4f5ef" />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <script is:inline>
+      try {
+        const saved = localStorage.getItem('meletiq-theme');
+        if (saved === 'light' || saved === 'dark')
+          document.documentElement.dataset.theme = saved;
+      } catch {
+        /* System preference remains available when storage is blocked. */
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="#" aria-label="Meletiq home">
+        <img src="/favicon.svg" alt="" width="34" height="34" />
+        meletiq<span class="wordmark-dot">.</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#about">Studio</a>
+        <a href="#products">Explorations</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch color theme"
+        hidden
+      >
+        <span aria-hidden="true">◐</span>
+        <span class="theme-label">Theme</span>
+      </button>
+    </header>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span> Independent software studio
+          </p>
+          <h1 id="hero-title">
+            Thoughtful
+            <br />
+            software.
+            <br />
+            <span>Useful by design.</span>
+          </h1>
+          <p class="hero-description">
+            Good software should make life a little easier. We’re building with
+            that simple idea in mind.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#products">
+              Explore what’s next <span aria-hidden="true">↗</span>
+            </a>
+            <a class="text-link" href="#about">
+              Meet the studio <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="art-grid"></div>
+          <div class="monogram">
+            m<span>.</span>
+          </div>
+          <span class="art-caption">IDEA → CARE → UTILITY</span>
+          <span class="art-corner">M / 001</span>
+          <div class="floating-note">
+            Less friction.
+            <br />
+            More possibility.
+          </div>
+        </div>
+        <div class="hero-bottom">
+          <span>Built with intention.</span>
+          <span>For everyday possibility.</span>
+          <span class="scroll-note">Scroll to discover ↓</span>
+        </div>
+      </section>
+      <section
+        class="about section wrap"
+        id="about"
+        aria-labelledby="about-title"
+      >
+        <p class="eyebrow">01 / The studio</p>
+        <div class="section-body">
+          <h2 id="about-title">
+            A thoughtful approach
+            <br />
+            to useful things.
+          </h2>
+          <div class="prose">
+            <p>
+              Meletiq is an independent software studio focused on practical,
+              accessible digital experiences. We’re interested in the small
+              frustrations that good design and careful engineering can help
+              resolve.
+            </p>
+            <p>
+              From browser tools to mobile apps and moments of offline play, our
+              direction is simple: make things that earn their place in your
+              day.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section
+        class="products section wrap"
+        id="products"
+        aria-labelledby="products-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / On the drawing board</p>
+            <h2 id="products-title">Ideas taking shape.</h2>
+          </div>
+          <p class="section-note">
+            Early explorations.
+            <br />
+            No products available yet.
+          </p>
+        </div>
+        <div class="product-grid">
+          {products.map((p) => (
+            <article class="product">
+              <div class="product-top">
+                <span>{p.number}</span>
+                <span class="pill">Coming soon</span>
+              </div>
+              <div class="product-glyph" aria-hidden="true">
+                {p.glyph}
+              </div>
+              <p class="product-label">{p.label}</p>
+              <h3>{p.title}</h3>
+              <p>{p.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section
+        class="values section wrap"
+        id="values"
+        aria-labelledby="values-title"
+      >
+        <p class="eyebrow">03 / What guides us</p>
+        <div class="section-body">
+          <h2 id="values-title">
+            Clear purpose.
+            <br />
+            Care in the details.
+          </h2>
+          <div>
+            <p class="mission">
+              Our mission is to make everyday tasks simpler through useful,
+              approachable software. Our vision is to bring well-designed
+              digital tools within reach of more people.
+            </p>
+            <dl class="values-list">
+              <div>
+                <dt>Purpose before complexity</dt>
+                <dd>Start with a real need. Keep the solution focused.</dd>
+              </div>
+              <div>
+                <dt>Accessible by intention</dt>
+                <dd>
+                  Design for clarity, different abilities, and everyday devices.
+                </dd>
+              </div>
+              <div>
+                <dt>Trust through care</dt>
+                <dd>
+                  Make deliberate choices about privacy, quality, and
+                  reliability.
+                </dd>
+              </div>
+              <div>
+                <dt>Curiosity with direction</dt>
+                <dd>
+                  Explore new possibilities while staying grounded in
+                  usefulness.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section
+        class="contact wrap"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div>
+          <p class="eyebrow">04 / Stay in the loop</p>
+          <h2 id="contact-title">
+            Useful things
+            <br />
+            start with a conversation.
+          </h2>
+          <p>
+            Have an idea or a question? Start a public conversation on our
+            website repository. Please keep personal and sensitive information
+            out of public issues.
+          </p>
+        </div>
+        <a
+          class="button"
+          href="https://github.com/meletiq/meletiq-website/issues"
+        >
+          Say hello on GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+    <footer class="site-footer wrap">
+      <a class="wordmark" href="#">
+        meletiq<span class="wordmark-dot">.</span>
+      </a>
+      <p>Thoughtful software. Useful by design.</p>
+      <a href="https://github.com/meletiq">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+      <small>© {new Date().getFullYear()} Meletiq</small>
+    </footer>
+    <script>
+      const button = document.querySelector<HTMLButtonElement>('#theme-toggle');
+      const systemTheme = () =>
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+      const currentTheme = () =>
+        document.documentElement.dataset.theme || systemTheme();
+      const updateLabel = () =>
+        button?.setAttribute(
+          'aria-label',
+          `Switch to ${currentTheme() === 'dark' ? 'light' : 'dark'} mode`,
+        );
+      if (button) {
+        button.hidden = false;
+        updateLabel();
+        button.addEventListener('click', () => {
+          const next = currentTheme() === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('meletiq-theme', next);
+          } catch {
+            /* Theme still works for the current page. */
+          }
+          updateLabel();
+        });
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', updateLabel);
+      }
+    </script>
+  </body>
+</html>
